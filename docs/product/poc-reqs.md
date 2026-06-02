@@ -47,7 +47,7 @@ The phase shall provide opportunities to practice:
 * IDOR
 * User enumeration
 
-## Exit Criteria
+## Exit Conditions
 
 The phase is considered complete when:
 
