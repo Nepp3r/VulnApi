@@ -100,4 +100,4 @@ Can:
 ## Scope Limitations
 
 This product intentionally limits feature depth. The goal is not to build a complete social network, but to provide enough realistic functionality to support application security testing, vulnerability research, security documentation, and hardening activities.
-Also scope of PoC and MVP differs and their requirements will be described in separate files [PoC](docs/product/poc-reqs.md) and [MVP](docs/product/mvp-reqs.md)
+Also scope of PoC and MVP differs and their requirements will be described in separate files [PoC](poc-reqs.md) and [MVP](mvp-reqs.md)
