@@ -12,53 +12,53 @@ While the application intentionally limits feature depth, it aims to provide suf
 ## Functional Requirements
 
 ### 1. Identity and Access Management
-- Users can register.
-- Users can log in.
-- Users can log out.
-- Users can optionally enable MFA.
-- The system supports at least two roles: regular user and administrator.
+- Users can register
+- Users can log in
+- Users can log out
+- Users can optionally enable MFA
+- The system supports at least two roles: regular user and administrator
 
 ### 2. User Profiles
-- Users can edit their display name, tag, description, and profile picture.
-- Users can configure profile visibility.
-- Users can blacklist other users.
+- Users can edit their display name, tag, description, and profile picture
+- Users can configure profile visibility
+- Users can blacklist other users
 
 ### 3. Movies and Watchlists
-- Users can create movie entries with name, description, picture, and tags.
-- Users can create watchlists.
-- Users can add movies to watchlists using statuses such as planned, watching, watched, or abandoned.
+- Users can create movie entries with name, description, picture, and tags
+- Users can create watchlists
+- Users can add movies to watchlists using statuses such as planned, watching, etc.
 
 ### 4. Social Feed
-- Users can publish posts.
-- Users can comment on posts.
-- Users can comment on user profiles.
-- Users can like posts or comments.
-- Users can follow other users.
-- Users can mention users and reference movies.
+- Users can publish post
+- Users can comment on posts
+- Users can comment on user profiles
+- Users can like posts or comments
+- Users can follow other users
+- Users can mention users and reference movies
 
 ### 5. Groups
-- Users can create groups.
-- Users can join and leave groups.
-- Groups can be public or private.
-- Private groups use a whitelist.
-- Public groups may use a blacklist.
+- Users can create groups
+- Users can join and leave groups
+- Groups can be public or private
+- Private groups use a whitelist
+- Public groups may use a blacklist
 
 ### 6. Search
-- Users can search for people, posts, movies, and groups.
+- Users can search for people, posts, movies, and groups
 
 ### 7. Notifications
-- Users can subscribe to notifications from people or groups.
-- Users receive notifications about likes, comments, mentions, and new followers.
-- Users can manage notification preferences.
+- Users can subscribe to notifications from people or groups
+- Users receive notifications about likes, comments, mentions, and new followers
+- Users can manage notification preferences
 
 ### 8. Administration and Moderation
-- Administrators can access a dashboard with basic statistics.
-- Administrators can moderate users, posts, comments, movies, and groups.
-- Users can report content or users.
-- Administrators can review and respond to reports.
+- Administrators can access a dashboard with basic statistics
+- Administrators can moderate users, posts, comments, movies, and groups
+- Users can report content or users
+- Administrators can review and respond to reports
 
 ### 9. Direct Messages (optional)
-- Users can send messages to each other.
+- Users can send messages to each other
 
 ## User Roles
 
@@ -90,12 +90,12 @@ Can:
 
 ## Non-Functional Requirements
 
-- The application shall expose a REST API.
+- The application shall expose a REST API
 - The application shall have a more complex infrastructure with Proxy, Front-End, Back-End and Database servers
-- The application shall use a relational database.
-- The application shall support containerized deployment.
-- The application shall maintain audit logs for administrative actions.
-- The application shall support both vulnerable and hardened security states throughout the project lifecycle.
+- The application shall use a relational database
+- The application shall support containerized deployment
+- The application shall maintain audit logs for administrative actions
+- The application shall support both vulnerable and hardened security states throughout the project lifecycle
 
 ## Scope Limitations
 
