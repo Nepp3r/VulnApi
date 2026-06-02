@@ -12,7 +12,7 @@ The following functionality shall be added to the PoC implementation.
 
 * Profile picture uploads
 
-### Social Feed
+### Feed
 
 * Likes
 * Profile comments
@@ -45,7 +45,7 @@ The phase shall provide opportunities to practice:
 * Broken access control
 * Information disclosure
 
-## Exit Criteria
+## Exit Conditions
 
 The phase is considered complete when:
 
