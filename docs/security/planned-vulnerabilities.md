@@ -243,6 +243,138 @@ Demonstrate:
 
 ---
 
+## PV-011 — Cross-Site Request Forgery (CSRF)
+
+### Phase
+
+MVP
+
+### Area
+
+User Settings
+
+### Description
+
+The application accepts state-changing requests without sufficient protection against cross-site request forgery attacks.
+
+An attacker may cause authenticated users to unknowingly perform actions such as changing profile settings, updating preferences, or modifying account information.
+
+### Educational Objective
+
+Demonstrate:
+
+* CSRF attack mechanics
+* Browser trust assumptions
+* State-changing request protection
+* Anti-forgery token implementation
+
+---
+
+## PV-012 — Insecure Direct Object Reference (IDOR)
+
+### Phase
+
+MVP
+
+### Area
+
+Direct Messages
+
+### Description
+
+Message and conversation identifiers are exposed through the API without sufficient ownership validation.
+
+A user may access conversations belonging to other users by manipulating identifiers within requests.
+
+### Educational Objective
+
+Demonstrate:
+
+* Horizontal privilege escalation
+* Ownership validation failures
+* Authorization testing techniques
+
+---
+
+## PV-013 — Broken Group Authorization
+
+### Phase
+
+MVP
+
+### Area
+
+Groups
+
+### Description
+
+Group membership and access rules are not consistently enforced by the backend.
+
+Users may access private group resources, perform moderation actions, or interact with group content without the required permissions.
+
+### Educational Objective
+
+Demonstrate:
+
+* Broken access control
+* Privilege escalation
+* Membership validation
+* Authorization design weaknesses
+
+---
+
+## PV-014 — Excessive Data Exposure
+
+### Phase
+
+MVP
+
+### Area
+
+REST API
+
+### Description
+
+API endpoints return more information than is required by the client.
+
+Responses may expose internal identifiers, administrative fields, moderation status, account metadata, or other sensitive information that should not be visible to regular users.
+
+### Educational Objective
+
+Demonstrate:
+
+* API security testing
+* Sensitive information disclosure
+* Data minimization principles
+* Secure API design
+
+---
+
+## PV-015 — Missing Audit Logging
+
+### Phase
+
+MVP
+
+### Area
+
+Administration and Moderation
+
+### Description
+
+Administrative and moderation actions are not consistently recorded within audit logs.
+
+Changes to users, posts, groups, reports, or permissions may occur without generating sufficient evidence for later investigation.
+
+### Educational Objective
+
+Demonstrate:
+
+* Security monitoring failures
+* Accountability challenges
+* Detection and response limitations
+* Security governance principles
+
 # Future Vulnerabilities
 
 The following categories may be introduced in later project phases:
