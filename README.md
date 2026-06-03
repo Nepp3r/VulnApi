@@ -32,8 +32,6 @@ Review the project documentation here:
 * [Product Documentation](docs/product/)
 * [Architecture Documentation](docs/architecture/)
 * [Security Documentation](docs/security/)
-* [API Documentation](docs/api/)
-* [Labs](labs/)
 * [Security Reports](reports/)
 
 ## Project Purpose
