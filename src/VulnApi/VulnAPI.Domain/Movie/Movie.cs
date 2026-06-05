@@ -6,12 +6,39 @@ namespace VulnAPI.Domain.Movie
 {
     public class Movie
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public ICollection<Genres> GenresList { get; set; }
-        public byte[] CoverImage { get; set; }
+        private readonly List<Genre> _genres = new();
 
+        private Movie() { }
+
+        public static Movie Create(string title, string description, DateTime releaseDate)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+                throw new ArgumentException("Title is required", nameof(title));
+
+            return new Movie
+            {
+                Title = title,
+                Description = description,
+                ReleaseDate = releaseDate
+            };
+        }
+
+        public int Id { get; private set; }
+        public string Title { get; private set; }
+        public string Description { get; private set; }
+        public DateTime ReleaseDate { get; private set; }
+        public string CoverImageUrl { get; private set; }
+        public IReadOnlyCollection<Genre> Genres => _genres.AsReadOnly();
+
+        public void AddGenre(Genre genre)
+        {
+            if (!_genres.Contains(genre))
+                _genres.Add(genre);
+        }
+
+        public void SetCoverImage(string imageUrl)
+        {
+            CoverImageUrl = imageUrl;
+        }
     }
 }

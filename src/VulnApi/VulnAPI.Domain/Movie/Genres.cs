@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VulnAPI.Domain.Movie
 {
-    public enum Genres
+    public enum Genre
     {
         Action,
         Comedy,
