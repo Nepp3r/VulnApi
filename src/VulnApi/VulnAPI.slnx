@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="VulnAPI.Domain/VulnAPI.Domain.csproj" />
+  <Project Path="VulnAPI.Application/VulnAPI.Application.csproj" />
+  <Project Path="VulnAPI.Infrastructure/VulnAPI.Infrastructure.csproj" />
+  <Project Path="VulnAPI.Api/VulnAPI.Api.csproj" />
+</Solution>
