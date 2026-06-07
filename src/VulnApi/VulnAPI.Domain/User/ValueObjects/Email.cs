@@ -14,26 +14,19 @@ namespace VulnAPI.Domain.User.ValueObjects
         }
         public static Email Create(string _value)
         {
-            if (IsValid(_value))
-            {
-                return new Email(_value);
-            }
-            else
-            {
-                throw new InvalidOperationException("Invalid Email given");
-            }
+            Validate(_value);
+            return new Email(_value);
         }
 
-        public static bool IsValid(string email)
+        public static void Validate(string email)
         {
             try
             {
                 _ = new MailAddress(email);
-                return true;
             }
             catch
             {
-                return false;
+                throw new ArgumentException("Invalid email given");
             }
         }
     }

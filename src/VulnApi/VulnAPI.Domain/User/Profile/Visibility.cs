@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VulnAPI.Domain.Profile
+namespace VulnAPI.Domain.User.Profile
 {
     public enum Visibility
     {

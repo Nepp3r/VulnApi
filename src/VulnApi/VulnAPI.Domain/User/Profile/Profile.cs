@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace VulnAPI.Domain.Profile
+namespace VulnAPI.Domain.User.Profile
 {
     public class Profile
     {
         private Profile() { }
 
-        public static Profile Create(Guid ownerId, string description, Visibility visibility)
+        public static Profile Create(Guid ownerId, string description)
         {
             return new Profile
             {
                 OwnerId = ownerId,
                 Description = description,
-                Visibility = visibility,
+                Visibility = Visibility.Public,
                 CreatedAt = DateTime.UtcNow
             };
         }
         public Guid OwnerId { get; private set; }
-        public string Description { get; private set; }
+        public string? Description { get; private set; }
         public Visibility Visibility { get; private set; }
         public DateTime CreatedAt { get; private set; }
 

@@ -15,8 +15,6 @@ namespace VulnAPI.Domain.Post
                 LikedAt = DateTime.UtcNow
             };
         }
-
-        public int Id { get; private set; }
         public int PostId { get; private set; }
         public Guid UserId { get; private set; }
         public DateTime LikedAt { get; private set; }

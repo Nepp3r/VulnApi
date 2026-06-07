@@ -13,30 +13,23 @@ namespace VulnAPI.Domain.User.ValueObjects
         }
         public static UniqueName Create(string uniqueName)
         {
-            if (IsValid(uniqueName))
-            {
-                return new UniqueName(uniqueName);
-            }
-            else
-            {
-                throw new InvalidOperationException("Invalid UniqueName given.");
-            }
+            Validate(uniqueName);
+            return new UniqueName(uniqueName);
         }
-        public static bool IsValid(string name)
+        public static void Validate(string name)
         {
             if (!Regex.IsMatch(name, @"^[a-zA-Z0-9_.-]+$"))
             {
-                return false;
+                throw new ArgumentException("Invalid format of user's uniqueName", nameof(name));
             }
             if (name.Length < 5 || name.Length > 30)
             {
-                return false;
+                throw new ArgumentException("Invalid uniqueName length", nameof(name));
             }
             if (!char.IsLetter(name[0]))
             {
-                return false;
+                throw new ArgumentException("First letter of uniqueName has to be a letter", nameof(name));
             }
-            return true;
         }
     }
 }

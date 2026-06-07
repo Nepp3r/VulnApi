@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using VulnAPI.Domain.User.ValueObjects;
 using VulnAPI.Domain.Watchlist;
 
@@ -9,16 +10,17 @@ namespace VulnAPI.Domain.User
     public class User
     {
         public Guid Id { get; private set; }
-        public string Name { get; private set; }
+        public Name Name { get; private set; }
         public UniqueName UniqueName { get; private set; }
         public Role Role { get; private set; }
         private readonly List<Follow> _followers = new();
         private readonly List<Follow> _following = new();
+        private readonly List<WatchlistItem> _watchlist = new();
 
         public IReadOnlyCollection<Follow> Followers => _followers.AsReadOnly();
         public IReadOnlyCollection<Follow> Following => _following.AsReadOnly();
+        public IReadOnlyCollection<WatchlistItem> Watchlist => _watchlist.AsReadOnly();
         public Email Email { get; private set; }
-        public ICollection<WatchlistItem> Watchlist { get; private set; }
         public bool Blocked { get; private set; }
         public bool Deleted { get; private set; }
         public bool Verified { get; private set; }
@@ -29,17 +31,16 @@ namespace VulnAPI.Domain.User
             return new User()
             {
                 Id = Guid.NewGuid(),
-                Name = name,
+                Name = Name.Create(name),
                 UniqueName = UniqueName.Create(uniqueName),
                 Role = role,
                 Email = Email.Create(email),
-                Watchlist = new List<WatchlistItem>(),
                 Blocked = false,
                 Deleted = false,
                 Verified = false
             };
         }
-        public void Follow(User userToFollow)
+        public Follow Follow(User userToFollow)
         {
             if (userToFollow.Id == Id)
                 throw new InvalidOperationException("Cannot follow yourself");
@@ -49,7 +50,17 @@ namespace VulnAPI.Domain.User
 
             var follow = Domain.User.Follow.Create(Id, userToFollow.Id);
             _following.Add(follow);
-            userToFollow._followers.Add(follow);
+            return follow;
+        }
+        public void AddFollower(Follow follow)
+        {
+            if (follow.FollowingId != Id)
+                throw new InvalidOperationException("Follow record does not match this user");
+
+            if (_followers.Any(f => f.FollowerId == follow.FollowerId))
+                return;
+
+            _followers.Add(follow);
         }
 
         public void Unfollow(Guid userId)
@@ -59,6 +70,12 @@ namespace VulnAPI.Domain.User
                 throw new InvalidOperationException("Not following this user");
 
             _following.Remove(follow);
+        }
+        public void RemoveFollower(Guid followerId)
+        {
+            var follow = _followers.FirstOrDefault(f => f.FollowerId == followerId);
+            if (follow != null)
+                _followers.Remove(follow);
         }
         public void Block(string reason)
         {

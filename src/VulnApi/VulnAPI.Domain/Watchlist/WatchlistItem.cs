@@ -12,7 +12,19 @@ namespace VulnAPI.Domain.Watchlist
         public DateTime UpdatedAt { get; private set; }
         public WatchStatus WatchStatus { get; private set; }
         public string Comment { get; private set; }
-        public WatchlistItem() { }
+        private WatchlistItem() { }
+        public static WatchlistItem Create(Guid owner, int movieId, WatchStatus status = WatchStatus.Planning)
+        {
+            return new WatchlistItem
+            {
+                Owner = owner,
+                MovieId = movieId,
+                AddedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
+                WatchStatus = status,
+                Comment = string.Empty
+            };
+        }
         public void UpdateStatus(WatchStatus newStatus)
         {
             if (WatchStatus == newStatus)
