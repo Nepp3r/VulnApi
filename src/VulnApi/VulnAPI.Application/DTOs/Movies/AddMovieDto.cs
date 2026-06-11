@@ -7,9 +7,10 @@ namespace VulnAPI.Application.DTOs.Movies
 {
     public record AddMovieDto
     {
-        public List<string> Genres;
         public string Title;
         public string Description;
+        public string Author;
         public string ReleaseDate;
+        public List<string> Genres;
     }
 }
