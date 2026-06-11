@@ -27,18 +27,12 @@ namespace VulnAPI.Domain.Movie
         public string Title { get; private set; }
         public string Description { get; private set; }
         public DateTime ReleaseDate { get; private set; }
-        public string CoverImageUrl { get; private set; }
         public IReadOnlyCollection<Genre> Genres => _genres.AsReadOnly();
 
         public void AddGenre(Genre genre)
         {
             if (!_genres.Contains(genre))
                 _genres.Add(genre);
-        }
-
-        public void SetCoverImage(string imageUrl)
-        {
-            CoverImageUrl = imageUrl;
         }
     }
 }
