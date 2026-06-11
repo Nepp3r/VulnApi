@@ -25,6 +25,15 @@ namespace VulnAPI.Domain.Movie
                 _genres = genres
             };
         }
+        public Movie Update(string title, string description, string author, DateTime releaseDate, HashSet<Genre> genres)
+        {
+            Title = title;
+            Description = description;
+            Author = author;
+            ReleaseDate = releaseDate;
+            _genres = genres;
+            return this;
+        }
 
         public int Id { get; private set; }
         public string Title { get; private set; }
