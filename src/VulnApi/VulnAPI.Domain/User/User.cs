@@ -21,10 +21,9 @@ namespace VulnAPI.Domain.User
         public IReadOnlyCollection<Follow> Following => _following.AsReadOnly();
         public IReadOnlyCollection<WatchlistItem> Watchlist => _watchlist.AsReadOnly();
         public Email Email { get; private set; }
-        public bool Blocked { get; private set; }
+        public UserBlock? ActiveBlock { get; private set; }
         public bool Deleted { get; private set; }
         public bool Verified { get; private set; }
-        public bool CanAccess => Verified && !Blocked && !Deleted;
         private User() { }
         public static User Create(string name, string uniqueName, Role role, string email)
         {
@@ -35,7 +34,7 @@ namespace VulnAPI.Domain.User
                 UniqueName = UniqueName.Create(uniqueName),
                 Role = role,
                 Email = Email.Create(email),
-                Blocked = false,
+                ActiveBlock = null,
                 Deleted = false,
                 Verified = false
             };
@@ -77,20 +76,33 @@ namespace VulnAPI.Domain.User
             if (follow != null)
                 _followers.Remove(follow);
         }
-        public void Block(string reason)
+        public UserBlock Block(string? reason, TimeSpan? duration)
         {
             if (Deleted)
                 throw new InvalidOperationException("Cannot block deleted user");
+            if (Role == Role.Admin)
+                throw new InvalidOperationException("Cannot block administrator level user");
 
-            Blocked = true;
+            ActiveBlock = UserBlock.Create(reason, duration);
+            return ActiveBlock;
+        }
+        public UserBlock BlockPermanently(string? reason)
+        {
+            if (Deleted)
+                throw new InvalidOperationException("Cannot block deleted user");
+            if (Role == Role.Admin)
+                throw new InvalidOperationException("Cannot block administrator level user");
+
+            ActiveBlock = UserBlock.Create(reason, null);
+            return ActiveBlock;
         }
 
         public void Unblock()
         {
-            if (!Blocked)
-                throw new InvalidOperationException("User is not blocked");
+            if(ActiveBlock == null)
+                throw new InvalidOperationException("User is already unblocked");
 
-            Blocked = false;
+            ActiveBlock = null;
         }
     }
 }
