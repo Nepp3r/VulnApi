@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace VulnAPI.Domain.Movie
 {
     public class Movie
     {
-        private readonly List<Genre> _genres = new();
+        private HashSet<Genre> _genres { get; set; } = new();
 
         private Movie() { }
 
-        public static Movie Create(string title, string description, DateTime releaseDate)
+        public static Movie Create(string title, string description, DateTime releaseDate, HashSet<Genre> genres)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title is required", nameof(title));
@@ -20,6 +20,7 @@ namespace VulnAPI.Domain.Movie
                 Title = title,
                 Description = description,
                 ReleaseDate = releaseDate
+                _genres = genres
             };
         }
 
@@ -28,11 +29,5 @@ namespace VulnAPI.Domain.Movie
         public string Description { get; private set; }
         public DateTime ReleaseDate { get; private set; }
         public IReadOnlyCollection<Genre> Genres => _genres.AsReadOnly();
-
-        public void AddGenre(Genre genre)
-        {
-            if (!_genres.Contains(genre))
-                _genres.Add(genre);
-        }
     }
 }
