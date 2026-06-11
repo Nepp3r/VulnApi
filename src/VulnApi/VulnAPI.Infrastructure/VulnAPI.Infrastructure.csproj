@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VulnAPI.Application\VulnAPI.Application.csproj" />
+  </ItemGroup>
+
 </Project>
