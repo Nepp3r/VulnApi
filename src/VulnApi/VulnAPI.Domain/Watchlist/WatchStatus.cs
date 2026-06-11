@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VulnAPI.Domain.Watchlist
+﻿namespace VulnAPI.Domain.Watchlist
 {
     public enum WatchStatus
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VulnAPI.Domain.Movie
+﻿namespace VulnAPI.Domain.Movie
 {
     public enum Genre
     {

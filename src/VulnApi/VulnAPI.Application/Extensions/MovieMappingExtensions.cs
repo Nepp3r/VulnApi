@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using VulnAPI.Application.DTOs.Movie;
 using VulnAPI.Application.DTOs.Movies;
 using VulnAPI.Domain.Movie;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VulnAPI.Application.Extensions
 {

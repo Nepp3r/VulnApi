@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VulnAPI.Domain.Watchlist;
 
 namespace VulnAPI.Application.DTOs.Watchlists
 {

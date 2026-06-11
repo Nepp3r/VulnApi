@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VulnAPI.Domain.User.ValueObjects;
 
 namespace VulnAPI.Domain.Admin
 {
@@ -28,7 +25,7 @@ namespace VulnAPI.Domain.Admin
                 Author = author,
                 Title = title,
                 Text = text,
-                CreatedOn = DateTime.Now,
+                CreatedAt = DateTime.Now,
                 Status = ReportStatus.New
             };
         }

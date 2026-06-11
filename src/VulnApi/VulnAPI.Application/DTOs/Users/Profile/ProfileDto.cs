@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VulnAPI.Application.DTOs.Users.Profile
+﻿namespace VulnAPI.Application.DTOs.Users.Profile
 {
     public record ProfileDto
     {

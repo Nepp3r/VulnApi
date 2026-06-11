@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VulnAPI.Application.DTOs.Admin;
+﻿using VulnAPI.Application.DTOs.Admin;
 using VulnAPI.Domain.Admin;
 
 namespace VulnAPI.Application.Extensions

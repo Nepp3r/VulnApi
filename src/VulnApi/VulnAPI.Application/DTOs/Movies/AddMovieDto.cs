@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using VulnAPI.Domain.Movie;
 
 namespace VulnAPI.Application.DTOs.Movies
 {

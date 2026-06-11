@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VulnAPI.Domain.User
+﻿namespace VulnAPI.Domain.User
 {
     public enum Role
     {
