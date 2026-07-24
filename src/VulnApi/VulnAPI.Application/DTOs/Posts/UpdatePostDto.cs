@@ -4,13 +4,10 @@ using System.Text;
 
 namespace VulnAPI.Application.DTOs.Posts
 {
-    public record PostDto
+    public class UpdatePostDto
     {
-        public uint Id;
-        public string AuthorId;
-        public string AuthorUniqueName;
-        public string AuthorDisplayName;
         public string? Title;
         public string Content;
+        public uint PostId;
     }
 }

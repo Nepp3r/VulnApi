@@ -1,11 +1,11 @@
 ﻿using VulnAPI.Application.DTOs.Admin;
 using VulnAPI.Domain.Admin;
 
-namespace VulnAPI.Application.Extensions
+namespace VulnAPI.Application.Mappings
 {
-    public static class AdminMappingExtensions
+    public static class AdminMappings
     {
-        public static ReportDto ToDTO(this Report report)
+        public static ReportDto ToDTO(Report report)
         {
             return new ReportDto
             {

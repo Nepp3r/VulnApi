@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using VulnAPI.Application.DTOs.Movies;
-using VulnAPI.Application.Extensions;
+using VulnAPI.Application.Mappings;
 using VulnAPI.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using VulnAPI.Application.DTOs.Movie;
@@ -24,14 +24,14 @@ namespace VulnAPI.Application.Services
             if (movie is null)
                 throw new KeyNotFoundException("No movie with such Id was found");
             int addedToWatchLists = await _dbContext.WatchlistItems.CountAsync(w => w.MovieId == movieId, ct);
-            return movie.ToDto(addedToWatchLists);
+            return MovieMappings.ToDto(movie, addedToWatchLists);
         }
         public async Task AddMovieAsync(AddMovieDto movieData, CancellationToken ct = default)
         {
             var movies = _dbContext.Movies;
             if (movies.FirstOrDefault(m => m.Title == movieData.Title) != default)
                 throw new ApplicationException("There already is a movie with this title");
-            await movies.AddAsync(movieData.ToMovieObject());
+            await movies.AddAsync(MovieMappings.ToMovieObject(movieData));
             await _dbContext.SaveChangesAsync(ct);
         }
         public async Task UpdateMovieAsync(UpdateMovieDto movieData, CancellationToken ct = default)
@@ -39,7 +39,7 @@ namespace VulnAPI.Application.Services
             var movie = _dbContext.Movies.FirstOrDefault(m => m.Id == movieData.Id);
             if(movie is null)
                 throw new KeyNotFoundException("No movie with such Id was found");
-            movie.UpdateFromDto(movieData);
+            MovieMappings.UpdateFromDto(movie, movieData);
             await _dbContext.SaveChangesAsync(ct);
         }
         public async Task DeleteMovieAsync(int movieId, CancellationToken ct = default) {

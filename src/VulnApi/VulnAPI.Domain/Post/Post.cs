@@ -10,9 +10,9 @@ namespace VulnAPI.Domain.Post
         private readonly List<PostLike> _likes = new();
 
         private Post() { }
-        public int Id { get; private set; }
+        public uint Id { get; private set; }
         public Guid AuthorId { get; private set; }
-        public int? ParentPostId { get; private set; }
+        public uint? ParentPostId { get; private set; }
         public string? Title { get; private set; }
         public string Content { get; private set; }
         public DateTime CreatedAt { get; private set; }
@@ -42,7 +42,7 @@ namespace VulnAPI.Domain.Post
                 Deleted = false
             };
         }
-        public static Post CreateComment(Guid authorId, int parentPostId, string content)
+        public static Post CreateComment(Guid authorId, uint parentPostId, string content)
         {
             if (string.IsNullOrWhiteSpace(content))
                 throw new ArgumentException("Content cannot be empty", nameof(content));

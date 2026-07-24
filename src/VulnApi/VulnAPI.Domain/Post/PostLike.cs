@@ -6,7 +6,7 @@ namespace VulnAPI.Domain.Post
     {
         private PostLike() { }
 
-        public static PostLike Create(int postId, Guid userId)
+        public static PostLike Create(uint postId, Guid userId)
         {
             return new PostLike
             {
@@ -15,7 +15,7 @@ namespace VulnAPI.Domain.Post
                 LikedAt = DateTime.UtcNow
             };
         }
-        public int PostId { get; private set; }
+        public uint PostId { get; private set; }
         public Guid UserId { get; private set; }
         public DateTime LikedAt { get; private set; }
     }

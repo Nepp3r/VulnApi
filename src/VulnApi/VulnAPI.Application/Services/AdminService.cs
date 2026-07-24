@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VulnAPI.Application.DTOs.Admin;
-using VulnAPI.Application.Extensions;
+using VulnAPI.Application.Mappings;
 using VulnAPI.Application.Interfaces;
 using VulnAPI.Domain.Admin;
 using VulnAPI.Domain.Post;
@@ -42,14 +42,14 @@ namespace VulnAPI.Application.Services
         {
             var reports = _dbContext.Reports
                 .Where(r => r.Status != ReportStatus.Closed)
-                .Select(r => r.ToDTO())
+                .Select(r => AdminMappings.ToDTO(r))
                 .ToList();
             return reports;
         }
         public async Task<List<ReportDto>> GetAllReportsAsync()
         {
             var reports = _dbContext.Reports
-                .Select(r => r.ToDTO())
+                .Select(r => AdminMappings.ToDTO(r))
                 .ToList();
             return reports;
         }
