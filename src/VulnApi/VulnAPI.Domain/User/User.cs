@@ -9,7 +9,7 @@ namespace VulnAPI.Domain.User
     public class User
     {
         public Guid Id { get; private set; }
-        public Name Name { get; private set; }
+        public DisplayName DisplayName { get; private set; }
         public UniqueName UniqueName { get; private set; }
         public Role Role { get; private set; }
         private readonly List<Follow> _followers = new();
@@ -24,12 +24,12 @@ namespace VulnAPI.Domain.User
         public bool Deleted { get; private set; }
         public bool Verified { get; private set; }
         private User() { }
-        public static User Create(string name, string uniqueName, Role role, string email)
+        public static User Create(string displayName, string uniqueName, Role role, string email)
         {
             return new User()
             {
                 Id = Guid.NewGuid(),
-                Name = Name.Create(name),
+                DisplayName = DisplayName.Create(displayName),
                 UniqueName = UniqueName.Create(uniqueName),
                 Role = role,
                 Email = Email.Create(email),

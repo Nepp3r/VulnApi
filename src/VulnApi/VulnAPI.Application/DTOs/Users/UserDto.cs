@@ -2,9 +2,9 @@
 {
     public record UserDto
     {
-        string Name;
-        string UniqueName;
-        int followersCount;
-        int followingCount;
+        public string Name;
+        public string UniqueName;
+        public int followersCount;
+        public int followingCount;
     }
 }
