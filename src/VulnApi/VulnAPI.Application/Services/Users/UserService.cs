@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using VulnAPI.Application.DTOs.Users;
 using VulnAPI.Application.Interfaces;
 
-namespace VulnAPI.Application.Services
+namespace VulnAPI.Application.Services.Users
 {
     public class UserService
     {

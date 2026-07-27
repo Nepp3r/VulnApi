@@ -8,19 +8,24 @@ using VulnAPI.Application.Interfaces;
 using VulnAPI.Domain.Admin;
 using VulnAPI.Domain.Post;
 using VulnAPI.Domain.User;
+using VulnAPI.Application.Services.Users;
+using System.Threading;
+using Microsoft.EntityFrameworkCore;
 
 namespace VulnAPI.Application.Services.Admin
 {
     public class AdminService
     {
         private readonly IVulnApiDbContext _dbContext;
-        public AdminService(IVulnApiDbContext dbContext)
+        private readonly UserLookupService _userLookupService;
+        public AdminService(IVulnApiDbContext dbContext, UserLookupService userLookupService)
         {
             _dbContext = dbContext;
+            _userLookupService = userLookupService;
         }
-        public async Task BlockUserByIdAsync(Guid userId, string? reason, TimeSpan? duration)
+        public async Task BlockUserByIdAsync(string userId, string? reason, TimeSpan? duration, CancellationToken ct = default)
         {
-            User? user = _dbContext.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            User? user = await _userLookupService.GetUserByIdAsync(userId, ct);
             if (user == null)
                 throw new ApplicationException("User with given ID was not found");
             if (duration == null)
@@ -28,17 +33,17 @@ namespace VulnAPI.Application.Services.Admin
             else
                 user.BlockPermanently(reason);
             
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(ct);
         }
-        public async Task DeletePostByIdAsync(int postId)
+        public async Task DeletePostByIdAsync(int postId, CancellationToken ct = default)
         {
-            Post? post = _dbContext.Posts.FirstOrDefault(p => p.Id == postId);
+            Post? post = await _dbContext.Posts.FirstOrDefaultAsync(p => p.Id == postId, ct);
             if (post == null)
                 throw new ApplicationException("Post with given ID was not found");
             post.Delete();
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(ct);
         }
-        public async Task<List<ReportDto>> GetPendingReportsAsync()
+        public async Task<List<ReportDto>> GetPendingReports()
         {
             var reports = _dbContext.Reports
                 .Where(r => r.Status != ReportStatus.Closed)
@@ -46,7 +51,7 @@ namespace VulnAPI.Application.Services.Admin
                 .ToList();
             return reports;
         }
-        public async Task<List<ReportDto>> GetAllReportsAsync()
+        public async Task<List<ReportDto>> GetAllReports()
         {
             var reports = _dbContext.Reports
                 .Select(r => AdminMappings.ToDTO(r))
