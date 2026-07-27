@@ -9,7 +9,7 @@ using VulnAPI.Application.Interfaces;
 using VulnAPI.Domain.Post;
 using System;
 
-namespace VulnAPI.Application.Services
+namespace VulnAPI.Application.Services.Posts
 {
     public class PostService
     {

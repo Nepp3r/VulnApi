@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using VulnAPI.Application.DTOs.Movie;
 using System.Collections.Generic;
 
-namespace VulnAPI.Application.Services
+namespace VulnAPI.Application.Services.Movies
 {
     public class MovieService
     {

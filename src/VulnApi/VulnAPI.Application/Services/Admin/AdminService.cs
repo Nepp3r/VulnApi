@@ -9,7 +9,7 @@ using VulnAPI.Domain.Admin;
 using VulnAPI.Domain.Post;
 using VulnAPI.Domain.User;
 
-namespace VulnAPI.Application.Services
+namespace VulnAPI.Application.Services.Admin
 {
     public class AdminService
     {

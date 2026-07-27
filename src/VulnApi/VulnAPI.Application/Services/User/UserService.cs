@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,12 @@ namespace VulnAPI.Application.Services
 {
     public class UserService
     {
-        private readonly IVulnApiDbContext _context;
+        private readonly IVulnApiDbContext _dbContext;
         public async Task<UserDto> GetUserByIdAsync(Guid userId)
         {
 
         }
+
         public async Task UpdateUserAsync(UserDto userData)
         {
 
