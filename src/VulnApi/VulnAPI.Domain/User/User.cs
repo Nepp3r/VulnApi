@@ -99,7 +99,7 @@ namespace VulnAPI.Domain.User
         public void Unblock()
         {
             if(ActiveBlock == null)
-                throw new InvalidOperationException("User is already unblocked");
+                throw new InvalidOperationException("User is not blocked");
 
             ActiveBlock = null;
         }
