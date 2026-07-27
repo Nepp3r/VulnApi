@@ -2,9 +2,13 @@
 {
     public record ProfileDto
     {
-        string Name;
-        string UniqueName;
-        string Description;
-        string Visibility;
+        public string OwnerId;
+        public string OwnerUniqueName;
+        public string OwnerDisplayName;
+        public string Description;
+        public string Visibility;
+        public int FollowerCount;
+        public int FollowingCount;
+        public string CreatedAt;
     }
 }
