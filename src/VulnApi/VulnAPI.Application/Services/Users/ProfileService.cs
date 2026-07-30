@@ -22,9 +22,17 @@ namespace VulnAPI.Application.Services.Users
             _userLookupService = userLookupService;
 
         }
-        public async Task<ProfileDto> GetUserProfileAsync(string userUniqueName, CancellationToken ct = default)
+        public async Task<ProfileDto> GetUserProfileByUniqueNameAsync(string userUniqueName, CancellationToken ct = default)
         {
-            var user = await _userLookupService.GetUserByUniqueNameAsync(userUniqueName);
+            var user = await _userLookupService.GetUserByUniqueNameAsync(userUniqueName, ct);
+            if (user.Deleted || user.ActiveBlock != null)
+                throw new UnauthorizedAccessException("Specified User Profile is not accessible");
+            var profile = await _dbContext.Profiles.FirstOrDefaultAsync(p => p.OwnerId == user.Id, ct);
+            return ProfileMappings.ToDto(profile, user);
+        }
+        public async Task<ProfileDto> GetUserProfileByIdAsync(string userId, CancellationToken ct = default)
+        {
+            var user = await _userLookupService.GetUserByIdAsync(userId, ct);
             if (user.Deleted || user.ActiveBlock != null)
                 throw new UnauthorizedAccessException("Specified User Profile is not accessible");
             var profile = await _dbContext.Profiles.FirstOrDefaultAsync(p => p.OwnerId == user.Id, ct);
