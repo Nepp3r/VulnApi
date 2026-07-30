@@ -2,9 +2,13 @@
 {
     public record UserDto
     {
-        public string Name;
+        public string DisplayName;
         public string UniqueName;
-        public int followersCount;
-        public int followingCount;
+        public string Role;
+        public string Email;
+        public bool Blocked;
+        public UserBlockDto? Block;
+        public bool Deleted;
+        public bool Verified;
     }
 }

@@ -24,29 +24,48 @@ namespace VulnAPI.Domain.User
         public bool Deleted { get; private set; }
         public bool Verified { get; private set; }
         private User() { }
-        public static User Create(string displayName, string uniqueName, Role role, string email)
+        public static User Create(DisplayName displayName, UniqueName uniqueName, Email email, Role role)
         {
             return new User()
             {
                 Id = Guid.NewGuid(),
-                DisplayName = DisplayName.Create(displayName),
-                UniqueName = UniqueName.Create(uniqueName),
+                DisplayName = displayName,
+                UniqueName = uniqueName,
                 Role = role,
-                Email = Email.Create(email),
+                Email = email,
                 ActiveBlock = null,
                 Deleted = false,
                 Verified = false
             };
         }
-        public Follow Follow(User userToFollow)
+        public void Update(DisplayName? displayName, UniqueName? uniqueName, Email? email) 
         {
-            if (userToFollow.Id == Id)
+            if(displayName != null)
+            {
+                DisplayName = displayName;
+            }
+            if (uniqueName != null)
+            {
+                UniqueName = uniqueName;
+            }
+            if (email != null)
+            {
+                Email = email;
+            }
+        }
+        public void Delete()
+        {
+            Deleted = true;
+        }
+        public Follow Follow(Guid userToFollowId)
+        {
+            if (userToFollowId == Id)
                 throw new InvalidOperationException("Cannot follow yourself");
 
-            if (_following.Any(f => f.FollowingId == userToFollow.Id))
+            if (_following.Any(f => f.FollowingId == userToFollowId))
                 throw new InvalidOperationException("Already following this user");
 
-            var follow = Domain.User.Follow.Create(Id, userToFollow.Id);
+            var follow = Domain.User.Follow.Create(Id, userToFollowId);
             _following.Add(follow);
             return follow;
         }
